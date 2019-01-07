@@ -7,7 +7,8 @@ public class TennisMatch {
     private MatchType matchType;
     private boolean tieBreakInLastSet;
     private boolean isFinished;
-    private int currentSet;
+    private int currentSetNumber;
+
 
 
     public TennisMatch(Player player1, Player player2, MatchType matchType, boolean tieBreakInLastSet) {
@@ -23,27 +24,38 @@ public class TennisMatch {
         return "";
     }
     public int gamesInCurrentSetForPlayer(Player player){
-        return 1;
+        int game =0;
+        if(player.equals(player1)){
+            game = player.getSet()[0].getNbGamesPlayer1();
+        }else if (player.equals(player2)) {
+            game = player.getSet()[currentSetNumber-1].getNbGamesPlayer2();
+        }
+        return game;
     }
     public int gamesInSetForPlayer(int setNumber, Player player){
-        return 1;
+        int game =0;
+        if(player.equals(player1)){
+            game = player.getSet()[setNumber-1].getNbGamesPlayer1();
+        }else if (player.equals(player2)) {
+            game = player.getSet()[setNumber-1].getNbGamesPlayer2();
+        }
+        return game;
     }
 
     public int currentSetNumber(){
-        return currentSet;
+        return currentSetNumber;
     }
 
-    public void setCurrentSetNumber(int currentSet){
-        this.currentSet = currentSet;
+    public void setCurrentSetNumber(int currentSetNumber){
+        this.currentSetNumber = currentSetNumber;
     }
 
 
     public boolean isFinished(){
-        return isFinished;
-    }
-
-    public void setFinished(boolean finishedMatch) {
-        isFinished = finishedMatch;
+        if(player1.getNbSetWin() == matchType.numberOfSetsToWin() || player2.getNbSetWin() == matchType.numberOfSetsToWin()){
+            return true;
+        }
+        return false;
     }
 
     public Player getPlayer1() {
@@ -77,4 +89,6 @@ public class TennisMatch {
     public void setTieBreakInLastSet(boolean tieBreakInLastSet) {
         this.tieBreakInLastSet = tieBreakInLastSet;
     }
+
+
 }
