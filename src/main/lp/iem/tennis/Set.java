@@ -6,6 +6,7 @@ public class Set {
     private Game game;
     private int nbGamesPlayer1;
     private int nbGamesPlayer2;
+    private boolean isFinished;
 
     public Set(){
 
@@ -16,6 +17,14 @@ public class Set {
         this.game = game;
         this.nbGamesPlayer1 = nbGamesPlayer1;
         this.nbGamesPlayer2 = nbGamesPlayer2;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 
     public int getNumber() {
@@ -48,5 +57,12 @@ public class Set {
 
     public void setNbGamesPlayer2(int nbGamesPlayer2) {
         this.nbGamesPlayer2 = nbGamesPlayer2;
+    }
+
+    public void resetSetToStart(){
+        setNbGamesPlayer1(0);
+        setNbGamesPlayer2(0);
+        setFinished(false);
+        game.resetGameToStart();
     }
 }

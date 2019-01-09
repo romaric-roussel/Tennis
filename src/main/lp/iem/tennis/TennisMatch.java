@@ -6,8 +6,8 @@ public class TennisMatch {
     private Player player2;
     private MatchType matchType;
     private boolean tieBreakInLastSet;
-    private boolean isFinished;
     private int currentSetNumber;
+    private Set[] set;
 
 
 
@@ -19,13 +19,17 @@ public class TennisMatch {
     }
     public void updateWithPointWonBy(Player player){
 
+       //todo
+
     }
     public String pointsForPlayer(Player player){
         String point = "";
         if(player.equals(player1)){
-            point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer1();
+            point = set[currentSetNumber-1].getGame().getNbPointPlayer1();
+            //point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer1();
         }else if (player.equals(player2)) {
-            point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer2();
+            //point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer2();
+            point = set[currentSetNumber-1].getGame().getNbPointPlayer2();
         }
         return point;
 
@@ -34,18 +38,22 @@ public class TennisMatch {
     public int gamesInCurrentSetForPlayer(Player player){
         int game =0;
         if(player.equals(player1)){
-            game = player.getSet()[currentSetNumber-1].getNbGamesPlayer1();
+            //game = player.getSet()[currentSetNumber-1].getNbGamesPlayer1();
+            game = set[currentSetNumber-1].getNbGamesPlayer1();
         }else if (player.equals(player2)) {
-            game = player.getSet()[currentSetNumber-1].getNbGamesPlayer2();
+            //game = player.getSet()[currentSetNumber-1].getNbGamesPlayer2();
+            game = set[currentSetNumber-1].getNbGamesPlayer2();
         }
         return game;
     }
     public int gamesInSetForPlayer(int setNumber, Player player){
         int game =0;
         if(player.equals(player1)){
-            game = player.getSet()[setNumber-1].getNbGamesPlayer1();
+            //game = player.getSet()[setNumber-1].getNbGamesPlayer1();
+            game = set[setNumber-1].getNbGamesPlayer1();
         }else if (player.equals(player2)) {
-            game = player.getSet()[setNumber-1].getNbGamesPlayer2();
+            //game = player.getSet()[setNumber-1].getNbGamesPlayer2();
+            game = set[setNumber-1].getNbGamesPlayer2();
         }
         return game;
     }
@@ -98,5 +106,11 @@ public class TennisMatch {
         this.tieBreakInLastSet = tieBreakInLastSet;
     }
 
+    public Set[] getSet() {
+        return set;
+    }
 
+    public void setSet(Set[] set) {
+        this.set = set;
+    }
 }
