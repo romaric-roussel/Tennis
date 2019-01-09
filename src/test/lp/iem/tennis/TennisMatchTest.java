@@ -25,7 +25,7 @@ public class TennisMatchTest {
     private TennisMatch tennisMatch1  = new TennisMatch(player1,player2,bo3,false);
     private TennisMatch tennisMatch2  = new TennisMatch(player1,player2,bo5,false);
 
-    Set[] sets = new Set[5];
+    Set[] sets = new Set[3];
 
 
 
@@ -47,7 +47,7 @@ public class TennisMatchTest {
 
         game0.setNumber(0);
         game0.setNbPointPlayer1("0");
-        game0.setNbPointPlayer2("0");
+        game0.setNbPointPlayer2("A");
 
         set1.setGame(game0);
         set2.setGame(game0);
@@ -87,5 +87,16 @@ public class TennisMatchTest {
         assertThat(tennisMatch1.gamesInSetForPlayer(1,player1), is(3));
         assertThat(tennisMatch1.gamesInSetForPlayer(2,player2), is(0));
     }
-    
+
+    @Test
+    public void pointsForPlayer() {
+        assertThat(tennisMatch1.pointsForPlayer(player1),is("0"));
+        assertThat(tennisMatch1.pointsForPlayer(player2), is("A"));
+        for(int i =0 ; i<tennisMatch1.getMatchType().maxNumberOfSets();i++){
+            assertNotNull(player1.getSet()[i].getGame().getNbPointPlayer1());
+            assertNotNull(player2.getSet()[i].getGame().getNbPointPlayer2());
+        }
+
+    }
+
 }

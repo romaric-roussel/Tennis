@@ -21,7 +21,14 @@ public class TennisMatch {
 
     }
     public String pointsForPlayer(Player player){
-        return "";
+        String point = "";
+        if(player.equals(player1)){
+            point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer1();
+        }else if (player.equals(player2)) {
+            point = player.getSet()[currentSetNumber-1].getGame().getNbPointPlayer2();
+        }
+        return point;
+
     }
 
     public int gamesInCurrentSetForPlayer(Player player){

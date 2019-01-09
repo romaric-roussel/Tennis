@@ -49,12 +49,12 @@
     <session id="-1443745018">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="934" />
+          <entry key="java" value="1130" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="934" />
+          <entry key="JAVA" value="1130" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -81,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/lp/iem/tennis/TennisMatch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="35" column="34" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="272">
+              <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -90,8 +90,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/lp/iem/tennis/TennisMatchTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="451">
-              <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
+            <state relative-caret-position="349">
+              <caret line="93" column="67" lean-forward="true" selection-start-line="93" selection-start-column="67" selection-end-line="93" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -241,7 +241,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547061935950" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547064904214" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="true" />
@@ -273,7 +273,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TennisMatchTest.gamesInSetForPlayer">
+  <component name="RunManager" selected="JUnit.TennisMatchTest.pointsForPlayer">
     <configuration name="TennisMatchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tennis" />
       <extension name="coverage">
@@ -320,7 +320,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TennisMatchTest.isFinished" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TennisMatchTest.pointsForPlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tennis" />
       <extension name="coverage">
         <pattern>
@@ -330,7 +330,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="lp.iem.tennis" />
       <option name="MAIN_CLASS_NAME" value="lp.iem.tennis.TennisMatchTest" />
-      <option name="METHOD_NAME" value="isFinished" />
+      <option name="METHOD_NAME" value="pointsForPlayer" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -353,19 +353,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.TennisMatchTest.isFinished" />
       <item itemvalue="JUnit.TennisMatchTest" />
       <item itemvalue="JUnit.TennisMatchTest.gamesInCurrentSetForPlayer" />
       <item itemvalue="JUnit.TennisMatchTest.set" />
       <item itemvalue="JUnit.TennisMatchTest.gamesInSetForPlayer" />
+      <item itemvalue="JUnit.TennisMatchTest.pointsForPlayer" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TennisMatchTest.pointsForPlayer" />
+        <item itemvalue="JUnit.TennisMatchTest" />
         <item itemvalue="JUnit.TennisMatchTest.gamesInSetForPlayer" />
         <item itemvalue="JUnit.TennisMatchTest.gamesInCurrentSetForPlayer" />
         <item itemvalue="JUnit.TennisMatchTest.set" />
-        <item itemvalue="JUnit.TennisMatchTest" />
-        <item itemvalue="JUnit.TennisMatchTest.isFinished" />
       </list>
     </recent_temporary>
   </component>
@@ -379,32 +379,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1544106416459</updated>
-      <workItem from="1547059093581" duration="2630000" />
+      <workItem from="1547059093581" duration="4909000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 19h 51m 25s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 19h 51m 55s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 19h 52m 16s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 19h 52m 22s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 19h 52m 58s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 20h 01m 17s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TennisMatchTest_set - 2019.01.09 at 20h 22m 00s.xml">
-      <configuration name="TennisMatchTest.set" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="TennisMatchTest_gamesInCurrentSetForPlayer - 2019.01.09 at 20h 22m 16s.xml">
       <configuration name="TennisMatchTest.gamesInCurrentSetForPlayer" configurationId="JUnit" />
     </history-entry>
@@ -414,9 +393,30 @@
     <history-entry file="TennisMatchTest_gamesInSetForPlayer - 2019.01.09 at 20h 25m 18s.xml">
       <configuration name="TennisMatchTest.gamesInSetForPlayer" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="TennisMatchTest - 2019.01.09 at 20h 28m 13s.xml">
+      <configuration name="TennisMatchTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 20h 34m 28s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 20h 35m 47s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 21h 11m 37s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 21h 12m 57s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 21h 14m 23s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TennisMatchTest_pointsForPlayer - 2019.01.09 at 21h 14m 42s.xml">
+      <configuration name="TennisMatchTest.pointsForPlayer" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9127000" />
+    <option name="totallyTimeSpent" value="11406000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -478,13 +478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/lp/iem/tennis/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/lp/iem/tennis/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -492,17 +485,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/lp/iem/tennis/Set.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/lp/iem/tennis/TennisMatch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="35" column="34" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="34" />
+        <state relative-caret-position="272">
+          <caret line="16" column="35" lean-forward="true" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/lp/iem/tennis/TennisMatchTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="89" column="4" selection-start-line="89" selection-start-column="4" selection-end-line="89" selection-end-column="4" />
+        <state relative-caret-position="349">
+          <caret line="93" column="67" lean-forward="true" selection-start-line="93" selection-start-column="67" selection-end-line="93" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
