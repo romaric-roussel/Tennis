@@ -57,6 +57,8 @@ public class TennisMatchTest {
         sets[1] = set2;
         sets[2] = set3;
 
+        tennisMatch1.getPlayer1().setSet(sets);
+        tennisMatch1.getPlayer2().setSet(sets);
         tennisMatch1.getPlayer1().setNbSetWin(2);
         tennisMatch2.getPlayer2().setNbSetWin(3);
         tennisMatch1.setCurrentSetNumber(1);
@@ -80,4 +82,10 @@ public class TennisMatchTest {
         assertThat(tennisMatch1.gamesInCurrentSetForPlayer(player1), is(3));
         assertThat(tennisMatch1.gamesInCurrentSetForPlayer(player2), is(6));
     }
+    @Test
+    public void gamesInSetForPlayer() {
+        assertThat(tennisMatch1.gamesInSetForPlayer(1,player1), is(3));
+        assertThat(tennisMatch1.gamesInSetForPlayer(2,player2), is(0));
+    }
+    
 }
