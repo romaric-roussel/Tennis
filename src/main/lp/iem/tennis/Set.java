@@ -9,7 +9,10 @@ public class Set {
     private boolean isFinished;
 
     public Set(){
-
+        this.number = 1;
+        this.nbGamesPlayer1 = 0;
+        this.nbGamesPlayer2 = 0;
+        this.isFinished = false;
     }
 
     public Set(int number, Game game, int nbGamesPlayer1, int nbGamesPlayer2) {
@@ -20,8 +23,40 @@ public class Set {
     }
 
     public boolean isFinished() {
+        if(hasWinSetPlayer1() || hasWinSetPlayer2()){
+            this.isFinished = true;
+        }
         return isFinished;
     }
+
+    public boolean hasWinSetPlayer1(){
+        boolean win = false;
+        if(nbGamesPlayer1 == 6 && nbGamesPlayer2 <5 ){
+            win = true;
+        }
+        if(nbGamesPlayer1 == 6 && nbGamesPlayer2 == 6 ) {
+            if (game.hasWinTieBreakPlayer1()) {
+                win = true;
+            }
+        }
+
+        return win;
+    }
+
+    public boolean hasWinSetPlayer2(){
+        boolean win = false;
+        if(nbGamesPlayer2 == 6 && nbGamesPlayer1 <5 ){
+            win = true;
+        }
+        if(nbGamesPlayer1 == 6 && nbGamesPlayer2 == 6 ) {
+            if (game.hasWinTieBreakPlayer2()) {
+                win = true;
+            }
+        }
+
+        return win;
+    }
+
 
     public void setFinished(boolean finished) {
         isFinished = finished;
