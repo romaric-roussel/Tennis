@@ -21,6 +21,9 @@ public class Set {
         this.nbGamesPlayer1 = nbGamesPlayer1;
         this.nbGamesPlayer2 = nbGamesPlayer2;
     }
+    public boolean isTieBreak(){
+        return nbGamesPlayer1 == 6 && nbGamesPlayer2 == 6 ;
+    }
 
     public boolean isFinished() {
         if(hasWinSetPlayer1() || hasWinSetPlayer2()){
