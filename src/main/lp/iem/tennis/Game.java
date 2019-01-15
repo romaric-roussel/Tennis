@@ -2,53 +2,28 @@ package lp.iem.tennis;
 
 public class Game {
 
-    //private int number;
+
     private String nbPointPlayer1 ;
     private String nbPointPlayer2 ;
-    private boolean isFinished ;
     private int nbTieBreakPointPlayer1 ;
     private int nbTieBreakPointPlayer2 ;
 
     public Game(){
-        //this.number = 0;
+
         this.nbPointPlayer1 = "0";
         this.nbPointPlayer2 = "0";
-        this.isFinished = false;
         this.nbTieBreakPointPlayer1 = 0;
         this.nbTieBreakPointPlayer2 = 0;
 
     }
 
-    public Game(int number) {
-        //this.number = number;
-        this.nbPointPlayer1 = "0";
-        this.nbPointPlayer2 = "0";
-        this.isFinished = false;
-        this.nbTieBreakPointPlayer1 = 0;
-        this.nbTieBreakPointPlayer2 = 0;
-    }
 
-    public Game(int number, String nbPointPlayer1, String nbPointPlayer2) {
-        //this.number = number;
+    public Game( String nbPointPlayer1, String nbPointPlayer2) {
         this.nbPointPlayer1 = nbPointPlayer1;
         this.nbPointPlayer2 = nbPointPlayer2;
-        this.isFinished = false;
         this.nbTieBreakPointPlayer1 = 0;
         this.nbTieBreakPointPlayer2 = 0;
     }
-
-    public boolean isFinished()
-    {
-        return isFinished;
-    }
-
-    public void nextGame(){
-        this.nbPointPlayer1 = "0";
-        this.nbPointPlayer2 = "0";
-        this.isFinished = false;
-    }
-
-
 
     public boolean hasWinTieBreakPlayer1(){
         boolean win = false;
@@ -81,17 +56,7 @@ public class Game {
         this.nbTieBreakPointPlayer2 = nbTieBreakPointPlayer2;
     }
 
-    public void setFinished(boolean finished) {
-        isFinished = finished;
-    }
 
-   /* public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }*/
 
     public String getNbPointPlayer1() {
         return nbPointPlayer1;
@@ -110,14 +75,14 @@ public class Game {
     }
 
     public void resetGameToStart(){
-        //setNumber(0);
-        setNbPointPlayer1("0");
-        setNbPointPlayer2("0");
-        setFinished(false);
+
+        this.nbPointPlayer1 = "0";
+        this.nbPointPlayer2 = "0";
+
     }
 
     public void resetTieBreakPoint(){
-       setNbTieBreakPointPlayer1(0);
-       setNbTieBreakPointPlayer2(0);
+      this.nbTieBreakPointPlayer1 = 0;
+      this.nbTieBreakPointPlayer2 = 0;
     }
 }
