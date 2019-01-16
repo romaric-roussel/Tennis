@@ -27,19 +27,20 @@ public class TennisMatch {
         if(!isFinished()){
             if(player.equals(player1)){
                 if((currentSetNumber != matchType.maxNumberOfSets() && isTieBreak()) || (tieBreakInLastSet && currentSetNumber == matchType.maxNumberOfSets() && isTieBreak())){
-                    if(set[currentSetNumber-1].isTieBreak()){
-                        if(set[currentSetNumber-1].getGame().hasWinTieBreakPlayer1()){
-                            set[currentSetNumber-1].setNbGamesPlayer1(set[currentSetNumber-1].getNbGamesPlayer1() + 1);
-                            player1.setNbSetWin(player1.getNbSetWin()+1);
-                            if(isFinished()){
-                                displayScore();
-                            }else{
-                                setCurrentSetNumber(currentSetNumber+1);
+                    if(isTieBreak()){
+                        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer1(getCurrentTieBreakPointPlayer1()+1);
+                            if(set[currentSetNumber-1].hasWinSetPlayer1()){
+                                set[currentSetNumber-1].setNbGamesPlayer1(set[currentSetNumber-1].getNbGamesPlayer1() + 1);
+                                player1.setNbSetWin(player1.getNbSetWin()+1);
+                                if(isFinished()){
+                                    displayScore();
+                                }else{
+                                    setCurrentSetNumber(currentSetNumber+1);
+                                }
                             }
 
-                        }else {
-                            set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer1(getCurrentTieBreakPointPlayer1()+1);
-                        }
+
+
                     }
                 }else {
                     if(!set[currentSetNumber-1].isFinished()){
@@ -89,8 +90,9 @@ public class TennisMatch {
 
             } else if(player.equals(player2)) {
                 if((currentSetNumber != matchType.maxNumberOfSets() && isTieBreak()) || (tieBreakInLastSet && currentSetNumber == matchType.maxNumberOfSets() && isTieBreak())){
-                    if(set[currentSetNumber-1].isTieBreak()){
-                        if(set[currentSetNumber-1].getGame().hasWinTieBreakPlayer2()){
+                    if(isTieBreak()){
+                        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer2(getCurrentTieBreakPointPlayer2()+1);
+                        if(set[currentSetNumber-1].hasWinSetPlayer2()){
                             set[currentSetNumber-1].setNbGamesPlayer2(set[currentSetNumber-1].getNbGamesPlayer2() + 1);
                             player2.setNbSetWin(player2.getNbSetWin()+1);
                             if(isFinished()){
@@ -98,9 +100,6 @@ public class TennisMatch {
                             }else{
                                 setCurrentSetNumber(currentSetNumber+1);
                             }
-
-                        }else {
-                            set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer2(getCurrentTieBreakPointPlayer2()+1);
                         }
                     }
                 }else {
@@ -157,14 +156,32 @@ public class TennisMatch {
 
     }
 
-    private void displayScore() {
+    public void displayScore() {
         StringBuilder builder = new StringBuilder();
         builder.append("Match terminé. Score ");
         for (Set sets:set
              ) {
-            builder.append(sets.getNbGamesPlayer1()).append("/").append(sets.getNbGamesPlayer2()).append(" ");
+            if(sets.getGame().hasWinTieBreakPlayer1() || sets.getGame().hasWinTieBreakPlayer2()){
+                builder.append(sets.getNbGamesPlayer1())
+                        .append("/")
+                        .append(sets.getNbGamesPlayer2())
+                        .append(" (")
+                        .append(sets.getGame().getNbTieBreakPointPlayer1())
+                        .append("/")
+                        .append(sets.getGame().getNbTieBreakPointPlayer2())
+                        .append(")")
+                        .append(" ");
+            }else {
+                builder.append(sets.getNbGamesPlayer1())
+                        .append("/")
+                        .append(sets.getNbGamesPlayer2())
+                        .append(" ");
+            }
+
+
 
         }
+        System.out.println(builder);
     }
 
     private int getCurrentTieBreakPointPlayer2() {
@@ -269,6 +286,10 @@ public class TennisMatch {
 
     public Set[] getSet() {
         return set;
+    }
+
+    public Set getCurrentSet() {
+        return set[currentSetNumber-1];
     }
 
     public void setSet(Set[] set) {

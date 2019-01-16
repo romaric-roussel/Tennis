@@ -42,6 +42,9 @@ public class Set {
                 win = true;
             }
         }
+        if(nbGamesPlayer1 >6 && game.hasWinTieBreakPlayer1()){
+            win = true;
+        }
         if(nbGamesPlayer1 > 6 && (nbGamesPlayer1 - nbGamesPlayer2 ==2 )){
             win = true;
         }
@@ -58,6 +61,9 @@ public class Set {
             if (game.hasWinTieBreakPlayer2()) {
                 win = true;
             }
+        }
+        if(nbGamesPlayer2 >6 && game.hasWinTieBreakPlayer2()){
+            win = true;
         }
         if(nbGamesPlayer2 > 6 && (nbGamesPlayer2 - nbGamesPlayer1 == 2 )){
             win = true;

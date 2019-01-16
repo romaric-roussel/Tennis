@@ -16,7 +16,6 @@ public class TennisMatchTest {
     private Player player4 = new Player("tata");
     private MatchType bo3 = MatchType.BEST_OF_THREE;
     private MatchType bo5 = MatchType.BEST_OF_FIVE;
-    private boolean tieBreakInLastSet = false;
 
     private Set[] setBo3 = new Set[3];
     private Set[] setBo5 = new Set[5];
@@ -129,6 +128,95 @@ public class TennisMatchTest {
         tennisMatch3.updateWithPointWonBy(player3);
         assertThat(tennisMatch3.getSet()[0].getGame().getNbPointPlayer1(),is("0"));
         assertThat(tennisMatch3.getSet()[0].getNbGamesPlayer1(),is(1));
+
+
+        tennisMatch3.getSet()[0].setNbGamesPlayer1(6);
+        tennisMatch3.getSet()[0].setNbGamesPlayer2(6);
+        assertThat(tennisMatch3.getSet()[0].getNbGamesPlayer1(),is(6));
+        assertThat(tennisMatch3.getSet()[0].getNbGamesPlayer2(),is(6));
+
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(1));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(2));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(3));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(4));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(5));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer1(),is(6));
+
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(1));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(2));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(3));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(4));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(5));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(6));
+
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(7));
+        tennisMatch3.updateWithPointWonBy(player4);
+        assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(8));
+
+        assertTrue(tennisMatch3.getSet()[0].isFinished());
+        assertThat(tennisMatch3.currentSetNumber(),is(2));
+
+        tennisMatch3.getCurrentSet().setNbGamesPlayer1(5);
+        assertThat(tennisMatch3.getCurrentSet().getNbGamesPlayer1(),is(5));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("15"));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("30"));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("40"));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("0"));
+        assertThat(tennisMatch3.getSet()[1].getNbGamesPlayer1(),is(6));
+        assertTrue(tennisMatch3.getSet()[1].isFinished());
+
+        tennisMatch3.getSet()[2].setNbGamesPlayer1(6);
+        tennisMatch3.getSet()[2].setNbGamesPlayer2(4);
+
+        tennisMatch3.getSet()[3].setNbGamesPlayer1(4);
+        tennisMatch3.getSet()[3].setNbGamesPlayer2(6);
+
+        tennisMatch3.getSet()[4].setNbGamesPlayer1(11);
+        tennisMatch3.getSet()[4].setNbGamesPlayer2(10);
+
+        player3.setNbSetWin(2);
+        player4.setNbSetWin(2);
+
+        tennisMatch3.setCurrentSetNumber(5);
+
+
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("15"));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("30"));
+        tennisMatch3.updateWithPointWonBy(player3);
+        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("40"));
+        tennisMatch3.updateWithPointWonBy(player3);
+
+        assertThat(player3.getNbSetWin(),is(3));
+        assertTrue(tennisMatch3.isFinished());
+
+
+
+
+
+
+
+
+
+        tennisMatch3.displayScore();
 
 
 
