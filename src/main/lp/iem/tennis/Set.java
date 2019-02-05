@@ -102,7 +102,7 @@ public class Set {
     }
 
     public int getNbGamesPlayer2() {
-        return nbGamesPlayer2;
+         return nbGamesPlayer2;
     }
 
     public void setNbGamesPlayer2(int nbGamesPlayer2) {

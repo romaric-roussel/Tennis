@@ -14,6 +14,9 @@ public class TennisMatchTest {
 
     private Player player3 = new Player("toto");
     private Player player4 = new Player("tata");
+
+    private Player player5 = new Player("titi");
+    private Player player6 = new Player("toutou");
     private MatchType bo3 = MatchType.BEST_OF_THREE;
     private MatchType bo5 = MatchType.BEST_OF_FIVE;
 
@@ -26,11 +29,12 @@ public class TennisMatchTest {
     private TennisMatch tennisMatch1  = new TennisMatch(player1,player2,bo3,false);
     private TennisMatch tennisMatch2  = new TennisMatch(player1,player2,bo5,false);
     private TennisMatch tennisMatch3  = new TennisMatch(player3,player4,bo5,false);
+    private TennisMatch tennisMatch4  = new TennisMatch(player5,player6,bo3,true);
 
     @Before
     public void init(){
 
-        for(int i = 0;i<3;i++){
+       /* for(int i = 0;i<3;i++){
             setBo3[i] = new Set(i+1,new Game("0","0"),0,0);
         }
         for(int i = 0;i<5;i++){
@@ -38,6 +42,7 @@ public class TennisMatchTest {
         }
         tennisMatch1.setSet(setBo3);
         tennisMatch3.setSet(setBo5);
+        tennisMatch4.setSet(setBo3);*/
 
 
         //set1
@@ -296,6 +301,21 @@ public class TennisMatchTest {
         assertTrue(tennisMatch1.getSet()[0].hasWinSetPlayer2());
         assertFalse(tennisMatch1.getSet()[2].hasWinSetPlayer2());
 
+    }
+
+    @Test
+    public void test(){
+
+        do{
+            int random = (int )(Math.random() * 2 + 1);
+            if(random > 1){
+                tennisMatch4.updateWithPointWonBy(player6);
+                tennisMatch4.displayScore();
+            }else {
+                tennisMatch4.updateWithPointWonBy(player5);
+                tennisMatch4.displayScore();
+            }
+        }while (!tennisMatch4.isFinished());
     }
 
 

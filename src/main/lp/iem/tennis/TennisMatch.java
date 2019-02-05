@@ -11,149 +11,232 @@ public class TennisMatch {
 
 
 
+
     public TennisMatch(Player player1, Player player2, MatchType matchType, boolean tieBreakInLastSet) {
         this.player1 = player1;
         this.player2 = player2;
         this.matchType = matchType;
         this.tieBreakInLastSet = tieBreakInLastSet;
         this.currentSetNumber = 1;
+        initSet(matchType);
     }
     public boolean isTieBreak(){
        return set[currentSetNumber-1].getNbGamesPlayer1() == 6 && set[currentSetNumber-1].getNbGamesPlayer2() == 6;
     }
-    public void updateWithPointWonBy(Player player){
+    public void initSet(MatchType matchType){
+        switch (matchType){
+            case BEST_OF_THREE:
+                Set[] setBo3 = new Set[3];
+                for(int i = 0;i<3;i++){
+                setBo3[i] = new Set(i+1,new Game("0","0"),0,0);
+            }
+            setSet(setBo3);
+            break;
+            case BEST_OF_FIVE:
+                Set[] setBo5 = new Set[5];
+                for(int i = 0;i<5;i++){
+                setBo5[i] = new Set(i+1,new Game("0","0"),0,0);
+            }
+            setSet(setBo5);
+                break;
+        }
 
+
+    }
+    public void updateWithPointWonBy(Player player){
 
         if(!isFinished()){
             if(player.equals(player1)){
-                if((currentSetNumber != matchType.maxNumberOfSets() && isTieBreak()) || (tieBreakInLastSet && currentSetNumber == matchType.maxNumberOfSets() && isTieBreak())){
-                    if(isTieBreak()){
-                        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer1(getCurrentTieBreakPointPlayer1()+1);
-                            if(set[currentSetNumber-1].hasWinSetPlayer1()){
-                                set[currentSetNumber-1].setNbGamesPlayer1(set[currentSetNumber-1].getNbGamesPlayer1() + 1);
-                                player1.setNbSetWin(player1.getNbSetWin()+1);
-                                if(isFinished()){
-                                    displayScore();
-                                }else{
-                                    setCurrentSetNumber(currentSetNumber+1);
-                                }
-                            }
-
-
-
-                    }
-                }else {
-                    if(!set[currentSetNumber-1].isFinished()){
-                        switch (getCurrentPointPlayer1()){
-                            case "0":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer1("15");
-                                break;
-                            case "15":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer1("30");
-                                break;
-                            case "30":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer1("40");
-                                break;
-                            case "40":
-                                switch (getCurrentPointPlayer2()){
-                                    case "40":
-                                        set[currentSetNumber-1].getGame().setNbPointPlayer1("A");
-                                        break;
-                                    case "A":
-                                        set[currentSetNumber-1].getGame().setNbPointPlayer2("40");
-                                        break;
-                                    default:
-                                        set[currentSetNumber-1].setNbGamesPlayer1(set[currentSetNumber-1].getNbGamesPlayer1() + 1);
-                                        set[currentSetNumber-1].getGame().resetGameToStart();
-                                        if(set[currentSetNumber-1].isFinished()){
-                                            player1.setNbSetWin(player1.getNbSetWin()+1);
-                                            if(isFinished()){
-                                                displayScore();
-                                            }else{
-                                                setCurrentSetNumber(currentSetNumber+1);
-                                            }
-
-                                        }
-
-
-                                }break;
-                            case "A":
-                                set[currentSetNumber-1].setNbGamesPlayer1(set[currentSetNumber-1].getNbGamesPlayer1() + 1);
-                                set[currentSetNumber-1].getGame().resetGameToStart();
-                                break;
-
-
-                        }
-                    }
-
-                }
-
-            } else if(player.equals(player2)) {
-                if((currentSetNumber != matchType.maxNumberOfSets() && isTieBreak()) || (tieBreakInLastSet && currentSetNumber == matchType.maxNumberOfSets() && isTieBreak())){
-                    if(isTieBreak()){
-                        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer2(getCurrentTieBreakPointPlayer2()+1);
-                        if(set[currentSetNumber-1].hasWinSetPlayer2()){
-                            set[currentSetNumber-1].setNbGamesPlayer2(set[currentSetNumber-1].getNbGamesPlayer2() + 1);
-                            player2.setNbSetWin(player2.getNbSetWin()+1);
+                if(isTieBreakNow()){
+                        if(hasWinTieBreakPlayer1()){
+                            updateGamePlayer1InCurrentSet();
+                            updateNbSetWinPlayer1();
                             if(isFinished()){
                                 displayScore();
                             }else{
-                                setCurrentSetNumber(currentSetNumber+1);
+                                updateCurrentSetNumber();
                             }
+                        }else {
+                            updateTieBreakPointPlayer1();
                         }
-                    }
                 }else {
-                    if(!set[currentSetNumber-1].isFinished()){
-                        switch (getCurrentPointPlayer2()){
-                            case "0":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer2("15");
-                                break;
-                            case "15":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer2("30");
-                                break;
-                            case "30":
-                                set[currentSetNumber-1].getGame().setNbPointPlayer2("40");
-                                break;
-                            case "40":
-                                switch (getCurrentPointPlayer1()){
-                                    case "40":
-                                        set[currentSetNumber-1].getGame().setNbPointPlayer2("A");
-                                        break;
-                                    case "A":
-                                        set[currentSetNumber-1].getGame().setNbPointPlayer1("40");
-                                        break;
-                                    default:
-                                        set[currentSetNumber-1].setNbGamesPlayer2(set[currentSetNumber-1].getNbGamesPlayer2() + 1);
-                                        set[currentSetNumber-1].getGame().resetGameToStart();
-                                        if(set[currentSetNumber-1].isFinished()){
-                                            player2.setNbSetWin(player2.getNbSetWin()+1);
-                                            if(isFinished()){
-                                                displayScore();
-                                            }else{
-                                                setCurrentSetNumber(currentSetNumber+1);
-                                            }
+                    if(!isCurrentSetFinished()){
+                        updatePointPlayer1();
 
-                                        }
-
-
-                                }break;
-                            case "A":
-                                set[currentSetNumber-1].setNbGamesPlayer2(set[currentSetNumber-1].getNbGamesPlayer2() + 1);
-                                set[currentSetNumber-1].getGame().resetGameToStart();
-                                break;
-
-
-                        }
                     }
-
                 }
+            } else if(player.equals(player2)) {
+                if(isTieBreakNow()){
+                        if(hasWinTieBreakPlayer2()){
+                            updateGamePlayer2InCurrentSet();
+                            updateNbSetWinPlayer2();
+                            if(isFinished()){
+                                displayScore();
+                            }else{
+                                updateCurrentSetNumber();
+                            }
+                        }else {
+                            updateTieBreakPointPlayer2();
+                        }
+                }else {
+                    if(!isCurrentSetFinished()){
+                        updatePointPlayer2();
 
+                    }
+                }
             }
         }else {
             displayScore();
         }
+    }
+
+    private boolean hasWinTieBreakPlayer2() {
+        return set[currentSetNumber-1].getGame().hasWinTieBreakPlayer2();
+    }
+
+    private boolean hasWinTieBreakPlayer1() {
+        return set[currentSetNumber-1].getGame().hasWinTieBreakPlayer1();
+    }
+
+    private boolean isTieBreakNow() {
+        boolean bool = false;
+        if((currentSetNumber != matchType.maxNumberOfSets() && isTieBreak()) || (tieBreakInLastSet && currentSetNumber == matchType.maxNumberOfSets() && isTieBreak())){
+            if(set[currentSetNumber-1].isTieBreak()){
+                bool = true;
+            }
+        }
+        return bool;
+    }
+
+    private void updateTieBreakPointPlayer1() {
+        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer1(getCurrentTieBreakPointPlayer1()+1);
+    }
+
+    private void updateCurrentSetNumber() {
+        setCurrentSetNumber(currentSetNumber + 1);
+    }
+
+    private void updateTieBreakPointPlayer2() {
+        set[currentSetNumber-1].getGame().setNbTieBreakPointPlayer2(getCurrentTieBreakPointPlayer2()+1);
+    }
+
+    private void updatePointPlayer2() {
+        switch (getCurrentPointPlayer2()){
+            case "0":
+                setNbPointPlayer2(Point._15);
+                break;
+            case "15":
+                setNbPointPlayer2(Point._30);
+                break;
+            case "30":
+                setNbPointPlayer2(Point._40);
+                break;
+            case "40":
+                switch (getCurrentPointPlayer1()){
+                    case "40":
+                        setNbPointPlayer2(Point._A);
+                        break;
+                    case "A":
+                        setNbPointPlayer1(Point._40);
+                        break;
+                    default:
+                        updateGamePlayer2InCurrentSet();
+                        resetGameToStart();
+                        if(isCurrentSetFinished()){
+                            updateNbSetWinPlayer2();
+                            if(isFinished()){
+                                displayScore();
+                            }else{
+                                updateCurrentSetNumber();
+                            }
+
+                        }
 
 
+                }break;
+            case "A":
+                updateGamePlayer2InCurrentSet();
+                resetGameToStart();
+                break;
+
+
+        }
+    }
+
+    private void setNbPointPlayer2(Point point) {
+        set[currentSetNumber - 1].getGame().setNbPointPlayer2(point.getPoint());
+    }
+
+    private void updateNbSetWinPlayer2() {
+        player2.setNbSetWin(player2.getNbSetWin()+1);
+    }
+
+    private boolean isCurrentSetFinished() {
+        return set[currentSetNumber - 1].isFinished();
+    }
+
+    private void resetGameToStart() {
+        set[currentSetNumber - 1].getGame().resetGameToStart();
+    }
+
+    private void updateGamePlayer2InCurrentSet() {
+        set[currentSetNumber - 1].setNbGamesPlayer2(set[currentSetNumber - 1].getNbGamesPlayer2() + 1);
+    }
+
+    private void updatePointPlayer1() {
+        switch (getCurrentPointPlayer1()){
+            case "0":
+                setNbPointPlayer1(Point._15);
+                break;
+            case "15":
+                setNbPointPlayer1(Point._30);
+                break;
+            case "30":
+                setNbPointPlayer1(Point._40);
+                break;
+            case "40":
+                switch (getCurrentPointPlayer2()){
+                    case "40":
+                        setNbPointPlayer1(Point._A);
+                        break;
+                    case "A":
+                        setNbPointPlayer2(Point._40);
+                        break;
+                    default:
+                        updateGamePlayer1InCurrentSet();
+                        resetGameToStart();
+                        if(isCurrentSetFinished()){
+                            updateNbSetWinPlayer1();
+                            if(isFinished()){
+                                displayScore();
+
+                            }else{
+                                updateCurrentSetNumber();
+                            }
+
+                        }
+
+
+                }break;
+            case "A":
+                updateGamePlayer1InCurrentSet();
+                resetGameToStart();
+                break;
+
+
+        }
+    }
+
+    private void setNbPointPlayer1(Point point) {
+        set[currentSetNumber - 1].getGame().setNbPointPlayer1(point.getPoint());
+    }
+
+    private void updateNbSetWinPlayer1() {
+        player1.setNbSetWin(player1.getNbSetWin()+1);
+    }
+
+    private void updateGamePlayer1InCurrentSet() {
+        set[currentSetNumber - 1].setNbGamesPlayer1(set[currentSetNumber - 1].getNbGamesPlayer1() + 1);
     }
 
     public void displayScore() {
