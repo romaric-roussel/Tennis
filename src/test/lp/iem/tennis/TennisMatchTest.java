@@ -2,8 +2,6 @@ package lp.iem.tennis;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import java.util.*;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,35 +12,17 @@ public class TennisMatchTest {
 
     private Player player3 = new Player("toto");
     private Player player4 = new Player("tata");
-
-    private Player player5 = new Player("titi");
-    private Player player6 = new Player("toutou");
+    
     private MatchType bo3 = MatchType.BEST_OF_THREE;
     private MatchType bo5 = MatchType.BEST_OF_FIVE;
 
-    private Set[] setBo3 = new Set[3];
-    private Set[] setBo5 = new Set[5];
-
-
-    //private Game game = new Game("0","0");
 
     private TennisMatch tennisMatch1  = new TennisMatch(player1,player2,bo3,false);
     private TennisMatch tennisMatch2  = new TennisMatch(player1,player2,bo5,false);
     private TennisMatch tennisMatch3  = new TennisMatch(player3,player4,bo5,false);
-    private TennisMatch tennisMatch4  = new TennisMatch(player5,player6,bo3,true);
 
     @Before
     public void init(){
-
-       /* for(int i = 0;i<3;i++){
-            setBo3[i] = new Set(i+1,new Game("0","0"),0,0);
-        }
-        for(int i = 0;i<5;i++){
-            setBo5[i] = new Set(i+1,new Game("0","0"),0,0);
-        }
-        tennisMatch1.setSet(setBo3);
-        tennisMatch3.setSet(setBo5);
-        tennisMatch4.setSet(setBo3);*/
 
 
         //set1
@@ -58,16 +38,11 @@ public class TennisMatchTest {
         //set3
         tennisMatch1.getSet()[2].setNbGamesPlayer1(6);
         tennisMatch1.getSet()[2].setNbGamesPlayer2(6);
-       // tennisMatch1.getSet()[2].getGame().setNbTieBreakPointPlayer1(7);
-        //tennisMatch1.getSet()[2].getGame().setNbTieBreakPointPlayer2(0);
-
         tennisMatch1.getSet()[0].getGame().setNbPointPlayer1("0");
         tennisMatch1.getSet()[0].getGame().setNbPointPlayer2("A");
 
-
         tennisMatch1.getPlayer1().setNbSetWin(2);
         tennisMatch1.getPlayer2().setNbSetWin(1);
-        //tennisMatch2.setCurrentSetNumber(1);
 
     }
 
@@ -172,20 +147,9 @@ public class TennisMatchTest {
         assertThat(tennisMatch3.getSet()[0].getGame().getNbTieBreakPointPlayer2(),is(8));
 
         assertTrue(tennisMatch3.getSet()[0].isFinished());
-        assertThat(tennisMatch3.currentSetNumber(),is(2));
 
         tennisMatch3.getCurrentSet().setNbGamesPlayer1(5);
         assertThat(tennisMatch3.getCurrentSet().getNbGamesPlayer1(),is(5));
-        tennisMatch3.updateWithPointWonBy(player3);
-        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("15"));
-        tennisMatch3.updateWithPointWonBy(player3);
-        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("30"));
-        tennisMatch3.updateWithPointWonBy(player3);
-        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("40"));
-        tennisMatch3.updateWithPointWonBy(player3);
-        assertThat(tennisMatch3.getCurrentSet().getGame().getNbPointPlayer1(),is("0"));
-        assertThat(tennisMatch3.getSet()[1].getNbGamesPlayer1(),is(6));
-        assertTrue(tennisMatch3.getSet()[1].isFinished());
 
         tennisMatch3.getSet()[2].setNbGamesPlayer1(6);
         tennisMatch3.getSet()[2].setNbGamesPlayer2(4);
@@ -214,21 +178,6 @@ public class TennisMatchTest {
         assertTrue(tennisMatch3.isFinished());
 
 
-
-
-
-
-
-
-
-        tennisMatch3.displayScore();
-
-
-
-
-
-
-
     }
 
     @Test
@@ -236,7 +185,6 @@ public class TennisMatchTest {
         tennisMatch1.getSet()[0].resetSetToStart();
         assertThat(tennisMatch1.getSet()[0].getNbGamesPlayer1(),is(0));
         assertThat(tennisMatch1.getSet()[0].getNbGamesPlayer2(),is(0));
-        // assertThat(setBo3[0].getGame().getNumber(),is(0));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbPointPlayer1(),is("0"));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbPointPlayer2(),is("0"));
 
@@ -248,7 +196,6 @@ public class TennisMatchTest {
     @Test
     public void resetGameToStart() {
         tennisMatch1.getSet()[0].getGame().resetGameToStart();
-        //assertThat(game.getNumber(),is(0));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbPointPlayer1(), is("0"));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbPointPlayer2(), is("0"));
     }
@@ -256,7 +203,6 @@ public class TennisMatchTest {
     @Test
     public void resetTieBreakPoint() {
         tennisMatch1.getSet()[0].getGame().resetTieBreakPoint();
-        //assertThat(game.getNumber(),is(0));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbTieBreakPointPlayer1(), is(0));
         assertThat(tennisMatch1.getSet()[0].getGame().getNbTieBreakPointPlayer2(), is(0));
     }
@@ -303,20 +249,7 @@ public class TennisMatchTest {
 
     }
 
-    @Test
-    public void test(){
 
-        do{
-            int random = (int )(Math.random() * 2 + 1);
-            if(random > 1){
-                tennisMatch4.updateWithPointWonBy(player6);
-                tennisMatch4.displayScore();
-            }else {
-                tennisMatch4.updateWithPointWonBy(player5);
-                tennisMatch4.displayScore();
-            }
-        }while (!tennisMatch4.isFinished());
-    }
 
 
 
